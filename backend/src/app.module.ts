@@ -27,11 +27,11 @@ import { SeedModule } from './seed/seed.module';
         }
         return {
           type: 'postgres' as const,
-          host: config.get<string>('DB_HOST', 'localhost'),
-          port: +config.get<string>('DB_PORT', '5432'),
-          username: config.get<string>('DB_USERNAME', 'postgres'),
-          password: config.get<string>('DB_PASSWORD', ''),
-          database: config.get<string>('DB_DATABASE', 'planner'),
+          host: config.get('DB_HOST') as string || 'localhost',
+          port: +(config.get('DB_PORT') as string || '5432'),
+          username: config.get('DB_USERNAME') as string || 'postgres',
+          password: config.get('DB_PASSWORD') as string || '',
+          database: config.get('DB_DATABASE') as string || 'planner',
           entities: [__dirname + '/**/*.entity{.ts,.js}'],
           synchronize: true,
         };
